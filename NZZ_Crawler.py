@@ -29,8 +29,9 @@ for item in doc.select(".teaser__link")[0::2]:
         pass
 
 df = pd.DataFrame()
-df["Link"] = data_nzz_links
 df["Titel"] = data_nzz_headers
+df["Link"] = data_nzz_links
+
 
 print(df)
 
