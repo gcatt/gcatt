@@ -31,7 +31,7 @@ shinyServer(function(input, output) {
         google_news$Titel <- paste(google_news$Titel, "<a href='",google_news$Link,"' target='_blank'>Read more..</a>", sep = '\n')
         google_news['Titel']}}},
     
-        options = list(lengthMenu = c(3, 10), pageLength = 10),
+        options = list(lengthMenu = c(3, 10), pageLength = 5),
         escape = FALSE)
     
 })
