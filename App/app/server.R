@@ -17,12 +17,38 @@ dist_100km <- readRDS('Mobility/distance_100km.rds', refhook = NULL)
 
 str(dist_100km)
 source('Mobility_Data.R', local = TRUE)
+source('AQI.R', local = TRUE)
 
 
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
   
+  ###### Airquality all Years
+  output$plot_all_years<- renderPlot({
+    if (input$plot_all_years_options == 'Bejing') {
+      plot_bejing_all_years} else if (input$plot_all_years_options == 'Wuhan') {
+        plot_wuhan_all_years} else if (input$plot_all_years_options == 'Berlin') {
+          plot_berlin_all_years} else {
+            plot_milano_all_years}})
+  
+  ###### Airquality since 2019
+  output$plot_since2019<- renderPlot({
+    if (input$plot_since2019_options == 'Bejing') {
+      plot_bejing_2019} else if (input$plot_since2019_options == 'Wuhan') {
+        plot_wuhan_2019} else if (input$plot_since2019_options == 'Berlin') {
+          plot_berlin_2019} else {
+            plot_milano_2019}})
+  
+  ###### Airquality Jan-Mar
+  output$plot_jan_mar<- renderPlot({
+    if (input$plot_jan_mar_options == 'Bejing') {
+      plot_jan_mar_bejing} else if (input$plot_jan_mar_options == 'Wuhan') {
+        plot_jan_mar_wuhan} else if (input$plot_jan_mar_options == 'Berlin') {
+          plot_jan_mar_berlin} else {
+            plot_jan_mar_milano}})
+  
+  ##### Transport Data
   output$ggplot_employment_student_male_female <- renderPlot({
     if (input$ggplot_employment_student_male_female_input == 'employed') {
       plot_employed} else {
@@ -46,7 +72,7 @@ shinyServer(function(input, output) {
     
     )
    
-   
+  ###### News Feed
   output$news_articles <- renderDataTable({
     
     if (input$Choose_newsfeed == 'Kinda positive Newsfeed') {
