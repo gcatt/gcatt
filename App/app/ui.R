@@ -23,6 +23,28 @@ shinyUI(fluidPage(
     
     img(src='visuals-0RPf107BLek-unsplash.png', width = '100%'),
     h1('COVID-19: Some other News', align = 'center'),
+    h2('Airquality'),
+    h3('Airquality Index all Years'),
+    sidebarLayout(
+      sidebarPanel(
+        radioButtons('plot_all_years_options', 'Choose your graph: ', c('Bejing', 'Wuhan', 'Milano', 'Berlin'))),
+      mainPanel(
+        plotOutput('plot_all_years'))),
+    
+    h3('Airqualtiy Index since 2019'),
+    sidebarLayout(
+      sidebarPanel(
+        radioButtons('plot_since2019_options', 'Choose your graph: ', c('Bejing', 'Wuhan', 'Milano', 'Berlin'))),
+      mainPanel(
+        plotOutput('plot_since2019'))),
+    
+    h3('Airqualtiy Index Jan - Mar 2019'),
+    sidebarLayout(
+      sidebarPanel(
+        radioButtons('plot_jan_mar_options', 'Choose your graph: ', c('Bejing', 'Wuhan', 'Milano', 'Berlin'))),
+      mainPanel(
+        plotOutput('plot_jan_mar'))),
+    
     h2('Swiss Transport Data'),
     splitLayout(
     plotOutput('ggplot_age'),
