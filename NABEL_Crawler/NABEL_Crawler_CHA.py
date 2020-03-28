@@ -15,7 +15,7 @@ driver = webdriver.Chrome(executable_path = r'C:\Users\ginoc\Downloads\chromedri
 
 driver.get('https://www.bafu.admin.ch/bafu/de/home/themen/luft/zustand/daten/datenabfrage-nabel.html')
 
-time.sleep(2)
+time.sleep(1)
 
 select_nach_stationen_field = driver.find_element_by_partial_link_text('Abfrage nach Station')
 select_nach_stationen_field.click()
@@ -59,5 +59,12 @@ time.sleep(1)
 csv_download.click()
 time.sleep(15)
 
-print('*************************!!!DOWNLOAD COMPLETED!!!*************************')
+print('********************************************!!!DOWNLOAD COMPLETED!!!********************************************')
 driver.quit()
+
+#Import Datasets and Save
+df = pd.read_csv(r"C:\Users\ginoc\Downloads\CHA.csv", sep='delimiter', header=None)
+df.drop([0,1,2,3,4], inplace = True)
+df.to_csv('CHA.csv', index = False, header = False, encoding="utf-8")
+df_new = pd.read_csv('CHA.csv', sep=';')
+df_new.to_csv('CHA_clean.csv', index = False, header = True, encoding="utf-8")
