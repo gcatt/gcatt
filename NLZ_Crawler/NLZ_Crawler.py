@@ -34,4 +34,4 @@ df['Link'] = data_nlz_link
 
 print(df)
 
-df.to_csv("NLZ_headlines_Corona.csv", index=False, header=True)
+df.to_csv("NLZ_Output/NLZ_headlines_Corona.csv", index=False, header=True)
