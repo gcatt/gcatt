@@ -1,7 +1,7 @@
 library(dplyr)
 library(ggplot2)
 
-mobility <- daily_distance
+mobility <- read.csv('Mobility/Distanzkategorien_in_Prozent_pro_Tag.csv', sep = ";")
 
 colnames(mobility)
 
@@ -46,6 +46,7 @@ dist_100km <- filter(mobility, DESCRIPTION == "Distanz", PECULARITY == "100++ Ki
 dist_100km_stud <- select(dist_100km, "STUDYING", "DATE")
 dist_100km_empl <- select(dist_100km, "EMPLOYED", "DATE")
 dist_100km_female <-select(dist_100km, "FEMALE", "DATE")
+dist_100km_male <- select(dist_100km, "MALE", "DATE")
 dist_100km_gender <- select(dist_100km, "MALE", "FEMALE", "DATE")
 dist_100km_young <-select(dist_100km, "AGE_BTW_15_29", "DATE")
 dist_100km_middle <-select(dist_100km, "AGE_BTW_30_64", "DATE")
@@ -57,19 +58,22 @@ dist_100km_old
 #ggplot age
 
 ggplot() +
-  geom_line(data = dist_100km_young, aes(x = DATE, y = AGE_BTW_15_29)) +
-  geom_line(data = dist_100km_middle, aes(x = DATE, y = AGE_BTW_30_64), color ="red") +
-  geom_line(data = dist_100km_old, aes(x = DATE, y = AGE_BTW_65_79), color = "blue")+
+  geom_line(data = dist_100km_young, aes(x = DATE, y = AGE_BTW_15_29, color ="15-29 Years old")) +
+  geom_line(data = dist_100km_middle, aes(x = DATE, y = AGE_BTW_30_64, color ="30-64 Years old")) +
+  geom_line(data = dist_100km_old, aes(x = DATE, y = AGE_BTW_65_79, color = "65-79 Years old"))+
   labs(x = "Datum",
        y = "Prozenzsatz",
-       title = "Anteil aller die über 100km pro Tag zurücklegen")
+       title = "Anteil aller die über 100km pro Tag zurücklegen")+
+  scale_color_manual(name = "Legend", values=c("darkgreen", "red", "blue"))+
+  theme(legend.position="right")
+
 
 
 
 #ggplot employed
 
 ggplot(data = dist_100km_empl, aes(x = DATE, y = EMPLOYED)) +
-  geom_point() +
+  geom_line() +
   labs(x = "Datum",
        y = "Prozenzsatz aller Arbeitstätigen",
        title = "Anteil an Arbeitstätigen die über 100km pro Tag zurücklegen")
@@ -77,7 +81,7 @@ ggplot(data = dist_100km_empl, aes(x = DATE, y = EMPLOYED)) +
 #ggplot students
 
 ggplot(data = dist_100km_stud, aes(x = DATE, y = STUDYING)) +
-  geom_point() +
+  geom_line() +
   labs(x = "Datum",
        y = "Prozenzsatz aller Studenten",
        title = "Anteil an Studenten die über 100km pro Tag zurücklegen")
@@ -85,7 +89,7 @@ ggplot(data = dist_100km_stud, aes(x = DATE, y = STUDYING)) +
 #ggplot female
 
 ggplot(data = dist_100km_female, aes(x = DATE, y = FEMALE)) +
-  geom_point() +
+  geom_line() +
   labs(x = "Datum",
        y = "Prozenzsatz aller Frauen",
        title = "Anteil an Frauen die über 100km pro Tag zurücklegen")
@@ -94,7 +98,7 @@ ggplot(data = dist_100km_female, aes(x = DATE, y = FEMALE)) +
 #ggplot male
 
 ggplot(data = dist_100km_male, aes(x = DATE, y = MALE)) +
-  geom_point() +
+  geom_line() +
   labs(x = "Datum",
        y = "Prozenzsatz aller Männer",
        title = "Anteil an Männer die über 100km pro Tag zurücklegen")
@@ -102,12 +106,14 @@ ggplot(data = dist_100km_male, aes(x = DATE, y = MALE)) +
 #ggplot gender comparison
 
 ggplot() +
-  geom_line(data = dist_100km_male, aes(x = DATE, y = MALE)) +
-  geom_line(data = dist_100km_female, aes(x = DATE, y = FEMALE), color ="red") +
-  geom_line(data = dist_100km_stud, aes(x = DATE, y = STUDYING), color = "blue")+
+  geom_line(data = dist_100km_male, aes(x = DATE, y = MALE, color = "Male")) +
+  geom_line(data = dist_100km_female, aes(x = DATE, y = FEMALE, color ="Female")) +
+  geom_line(data = dist_100km_stud, aes(x = DATE, y = STUDYING, color = "Students"))+
   labs(x = "Datum",
        y = "Prozenzsatz",
-       title = "Anteil aller die über 100km pro Tag zurücklegen")
+       title = "Anteil aller die über 100km pro Tag zurücklegen")+
+  scale_color_manual(name = "Legend", values=c("darkgreen", "red", "blue"))+
+  theme(legend.position="right")
   
 
 
