@@ -13,7 +13,7 @@ is_distanz = df1["Beschreibung"]=="Distanz"
 df_distanz = df1[is_distanz]
 
 
-plt.plot(df_distanz)
+pd.
 
 
 

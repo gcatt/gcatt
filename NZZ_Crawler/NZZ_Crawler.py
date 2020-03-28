@@ -33,7 +33,7 @@ df["Titel"] = data_nzz_headers
 df["Link"] = data_nzz_links
 
 
-print(df)
 
-df.to_csv("NZZ_Output/NZZ_headlines_Corona.csv", index=False, header=True)
+
+df.to_csv("NZZ_Output/NZZ_headlines_Corona.csv", index=False, header=True, sep=";")
 
