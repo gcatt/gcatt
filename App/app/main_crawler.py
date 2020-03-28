@@ -10,9 +10,10 @@ class Search():
         der letzen 24 Stunden'''
 
         self.url_base = 'https://www.google.com'
-        self.url = 'https://www.google.com/search?q=corona&tbm=nws&sxsrf=ALeKk02ZFpt_qmZ516m_nuYTRHVUgXvk2A' \
-                   ':1585335930840&source=lnt&tbs=qdr:h&sa=X&ved=0ahUKEwjtnYfIrLvoAhViMewKHWMcBzMQpwUIJA&biw=1280&bih' \
-                   '=674&dpr=1 '
+        self.url = 'https://www.google.com/search?biw=1920&bih=1001&tbs=qdr%3Ad&tbm=nws&sxsrf' \
+                   '=ALeKk00UssXbx_Vx6uv0PlHTsb6V6cw6Qg%3A1585409233137&ei=0Wx_Xv-CCKGLmwXc4ZjgCw&q=corona+good+news' \
+                   '&oq=corona+good+news&gs_l=psy-ab.3..0.14034.14511.0.15500.4.4.0.0.0.0.294.294.2-1.1.0....0...1c.1' \
+                   '.64.psy-ab..3.1.294....0.i-7Rn7mew1k '
 
     def run(self):
         '''Crawlt alle gefunden Artikel und speichert diese als Objekte in der Klasse Articles() ab. Als Return-Wert
@@ -78,21 +79,18 @@ def main():
 
     ##### Output Liste erstellen und nach datum und zeit sortieren
     for article in results:
-        article_timestamp = change_timestamp(article.timestamp)
-        date = article_timestamp.strftime("%d/%m/%Y")
-        time = article_timestamp.strftime("%H:%M")
         output.append([article.title, article.link])
     output = sorted(output, key=lambda x: (x[1], x[0]), reverse=True)
 
 
     with open(path, 'w') as csvfile:
-        spamwriter = csv.writer(csvfile, delimiter=';',
+        spamwriter = csv.writer(csvfile, delimiter='|',
                                 quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
         spamwriter.writerow(['Titel', 'Link'])
         for row in output:
             spamwriter.writerow(row)
-
+    print(output)
 
     return output
 if __name__ == '__main__':

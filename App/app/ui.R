@@ -23,11 +23,21 @@ shinyUI(fluidPage(
     
     img(src='visuals-0RPf107BLek-unsplash.png', width = '100%'),
     h1('COVID-19: Some other News', align = 'center'),
-    h3('Plots'),
+    h2('Swiss Transport Data'),
+    splitLayout(
+    plotOutput('ggplot_age'),
+    plotOutput('ggplot_gender')
+    ),
+    sidebarLayout(
+      sidebarPanel(
+        radioButtons('ggplot_employment_student_male_female_input', 'Choose your graph: ', c('employed', 'students', 'male', 'female', 'age comparison', 'gender comparison'))),
+      mainPanel(
+        plotOutput('ggplot_employment_student_male_female'))),
+   
     h2('News Feed'),
     sidebarLayout( 
       sidebarPanel(
-        radioButtons('Choose_newsfeed', label = 'Choose your Newsfeed: ', choices = c('Neue Zürcher Zeitung', 'Google'))
+        radioButtons('Choose_newsfeed', label = 'Choose your Newsfeed: ', choices = c('Kinda positive Newsfeed', 'Hardcore Facts'))
       ),
       mainPanel(
         dataTableOutput('news_articles')
