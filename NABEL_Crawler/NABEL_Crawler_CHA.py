@@ -22,7 +22,10 @@ time.sleep(1)
 
 # Choose Station
 select_station = driver.find_element_by_xpath('//*[@id="station_select_chosen"]')
-select_station.send_keys('Chaum')    ### Change per Station ###
+select_station.click()
+type_station = driver.find_element_by_xpath('//*[@id="station_select_chosen"]/div/div/input')
+type_station.send_keys('Chaum')    ### Change per Station ###
+type_station.send_keys(Keys.RETURN)
 time.sleep(1)
 
 select_select_all = driver.find_element_by_xpath('//*[@id="station"]/p[1]/button[1]')
