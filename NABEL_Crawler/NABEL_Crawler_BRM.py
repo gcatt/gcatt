@@ -1,4 +1,5 @@
 from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 import time
 from bs4 import BeautifulSoup
 import pandas as pd
@@ -24,7 +25,7 @@ time.sleep(1)
 select_station = driver.find_element_by_xpath('//*[@id="station_select_chosen"]')
 select_station.click()
 type_station = driver.find_element_by_xpath('//*[@id="station_select_chosen"]/div/div/input')
-type_station.send_keys('Berom')    ### Change per Station ###
+type_station.send_keys('Beromünster')    ### Change per Station ###
 type_station.send_keys(Keys.RETURN)
 time.sleep(1)
 
