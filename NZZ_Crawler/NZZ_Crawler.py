@@ -16,36 +16,24 @@ for item in doc.select("h2"):
     try:
         item = item.select_one(".teaser__title-name").text
         item = item.strip()
-        #print(item)
         data_nzz_headers.append(item)
     except:
         pass
 
-for item in doc.select(".teaser__link"):
+for item in doc.select(".teaser__link")[0::2]:
     try:
         item = item.get("href")
         element = "https://www.nzz.ch"
-        #print(element+item)
         data_nzz_links.append(element+item)
     except:
         pass
 
-
-# print(data_nzz_headers)
-# print(data_nzz_links)
-
-zip_data = zip(data_nzz_headers, data_nzz_links)
-
-dict_data = dict(zip_data)
-print(dict_data)
+df = pd.DataFrame()
+df["Titel"] = data_nzz_headers
+df["Link"] = data_nzz_links
 
 
-#df = pd.DataFrame(data_nzz_links, data_nzz_headers)
+print(df)
 
-print(len(data_nzz_headers))
-print(len(data_nzz_links))
-
-
-#index = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
-
+df.to_csv("NZZ_Output/NZZ_headlines_Corona.csv", index=False, header=True)
 
