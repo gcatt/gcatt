@@ -25,7 +25,6 @@ for item in doc.select(".teaser__link")[0::2]:
         item = item.get("href")
         element = "https://www.nzz.ch"
         data_nzz_links.append('<a href=' + element + item +'>link</a>')
-        print(('<a href=' + element + item +'>link</a>'))
 
     except:
         pass
@@ -34,7 +33,7 @@ df = pd.DataFrame()
 df["Titel"] = data_nzz_headers
 df["Link"] = data_nzz_links
 
-print(df)
+
 
 
 df.to_csv("NZZ_Output/NZZ_headlines_Corona.csv", index=False, header=True, sep=";")

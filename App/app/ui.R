@@ -25,7 +25,16 @@ shinyUI(fluidPage(
     h1('COVID-19: Some other News', align = 'center'),
     h3('Plots'),
     h2('News Feed'),
-    dataTableOutput('news_articles')
+    sidebarLayout( 
+      sidebarPanel(
+        radioButtons('Choose_newsfeed', label = 'Choose your Newsfeed: ', choices = c('Neue Zürcher Zeitung', 'Google'))
+      ),
+      mainPanel(
+        dataTableOutput('news_articles')
+        
+      ) )
+    
+    
       
       
       

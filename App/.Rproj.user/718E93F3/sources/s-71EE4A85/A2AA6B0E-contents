@@ -1,0 +1,6 @@
+library(datasets)
+
+ggplot(data = iris, aes(x = 'selcected_plotinput1', y='selected_plotinput2')) + 
+  geom_point(aes(x=Sepal.Length, y=Sepal.Width))
+                                                                               
+             
