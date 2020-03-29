@@ -1,103 +1,52 @@
 # Loading required package
 #install.packages("quantmod")
 library(quantmod)
-
-# Downloading Prices of SMI ("^SSMI") via Yahoo Finance API
-prices <- NULL
-tickers_index <- c("^SSMI")
-
-for (Ticker in tickers_index){
-  prices <- cbind(prices,
-                  getSymbols.yahoo(Ticker, from="2020-01-01", periodicity = "daily",
-                                   auto.assign=FALSE)[,6])
-}
-
-
-prices_diff <- diff(prices)
-
-plot(prices)
-
-plot(prices_diff)
-
-
-prices <- NULL
-tickers_index <- c("^GSPC")
-
-for (Ticker in tickers_index){
-  prices <- cbind(prices,
-                  getSymbols.yahoo(Ticker, from="2020-01-01", periodicity = "daily",
-                                   auto.assign=FALSE)[,6])
-}
-
-prices_diff <- diff(prices)
-
-prices_log <- log(prices)
-
-plot(prices_log)
-
-plot(prices)
-
-plot(prices_diff)
-
+library(ggplot2)
 
 ### Zoom Video Communications
-prices <- NULL
+prices_zoom <- NULL
 tickers_index <- c("ZM")
 
 for (Ticker in tickers_index){
-  prices <- cbind(prices,
+  prices_zoom <- cbind(prices_zoom,
                   getSymbols.yahoo(Ticker, from="2020-01-01", periodicity = "daily",
                                    auto.assign=FALSE)[,6])
 }
-
-prices_diff <- diff(prices)
-
-plot(prices)
-
-plot(prices_diff)
-
-
-
-
-
-
 
 ### Microsoft
 
-prices <- NULL
+prices_microsoft <- NULL
 tickers_index <- c("MSFT")
 
 for (Ticker in tickers_index){
-  prices <- cbind(prices,
-                  getSymbols.yahoo(Ticker, from="2020-01-01", periodicity = "daily",
+  prices_microsoft <- cbind(prices_microsoft,
+                  getSymbols.yahoo(Ticker, from="2020-03-01", periodicity = "daily",
                                    auto.assign=FALSE)[,6])
 }
 
-plot(prices)
 
 ### Amazon
-prices <- NULL
+prices_amazon <- NULL
 tickers_index <- c("AMZN")
 
 for (Ticker in tickers_index){
-  prices <- cbind(prices,
+  prices_amazon <- cbind(prices_amazon,
                   getSymbols.yahoo(Ticker, from="2020-03-01", periodicity = "daily",
                                    auto.assign=FALSE)[,6])
 }
 
-plot(prices)
 
 ### JP Morgan Chase
-prices <- NULL
+prices_jpmorgan <- NULL
 tickers_index <- c("JPM")
 
 for (Ticker in tickers_index){
-  prices <- cbind(prices,
+  prices_jpmorgan <- cbind(prices_jpmorgan,
                   getSymbols.yahoo(Ticker, from="2020-03-01", periodicity = "daily",
                                    auto.assign=FALSE)[,6])
 }
 
-plot(prices)
+
 
 ### EXXON
 prices_exxon <- NULL
@@ -116,9 +65,36 @@ tickers_index <- c("WORK")
 
 for (Ticker in tickers_index){
   prices_slack <- cbind(prices_slack,
-                        getSymbols.yahoo(Ticker, from="2020-03-01", periodicity = "daily",
+                        getSymbols.yahoo(Ticker, from="2018-01-01", periodicity = "daily",
                                          auto.assign=FALSE)[,6])
 }
 
-plot(prices_slack,label)
-plot(prices_exxon, col = "green")
+View(prices_exxon)
+
+
+#prices_exxon <-data.frame(date=index(prices_exxon), coredata(prices_exxon))
+#prices_slack <- data.frame(date=index(prices_slack), coredata(prices_slack))
+
+colnames(prices_slack)<-"Price"
+colnames(prices_exxon)<-c("JPM","XOM")
+colnames(prices_zoom)<-"ZM.Adjusted"
+colnames(prices_amazon)<-"AMZN.Adjusted"
+colnames(prices_microsoft)<-"MSFT.Adjusted"
+colnames(prices_jpmorgan)<- "JPM.Adjusted"
+
+
+plot_zoom <- ggplot()+
+  geom_line(data=prices_zoom, aes(x=Index, y=ZM.Adjusted, color="Zoom"), size=1.5)+
+  ylab("Stock price in $")+
+  xlab("Date")+
+  scale_colour_manual(name="Legend", values=c("red", "green", "blue", "yellow", "black", "violet"))
+
+plot_zoom
+
+plot_slack <- ggplot()+
+  geom_line(data=prices_slack, aes(x=Index, y= Price, color="Slack" ), size=1.5)+
+  ylab("Stock price in $")+
+  xlab("Date")+
+  scale_colour_manual(name="Legend", values=c("red", "green", "blue", "yellow", "black", "violet"))
+plot_slack
+                      
