@@ -64,7 +64,28 @@ str(SIO)
 str(TAE)
 str(ZUE)
 
+#Remove NA's
+bas <- BAS[complete.cases(BAS),]
+ber <- BER[complete.cases(BER),]
+brm <- BRM[complete.cases(BRM),]
+cha <- CHA[complete.cases(CHA),]
+dav <- DAV[complete.cases(DAV),]
+due <- DUE[complete.cases(DUE),]
+hae <- HAE[complete.cases(HAE),]
+jun <- JUN[complete.cases(JUN),]
+lau <- LAU[complete.cases(LAU),]
+lug <- LUG[complete.cases(LUG),]
+mag <- MAG[complete.cases(MAG),]
+pay <- PAY[complete.cases(PAY),]
+rig <- RIG[complete.cases(RIG),]
+sio <- SIO[complete.cases(SIO),]
+tae <- TAE[complete.cases(TAE),]
+zue <- ZUE[complete.cases(ZUE),]
+
+
+bas <- BAS[complete.cases(BAS),]
 summary(BAS)
+summary(bas)
 
 BAS_O3<-ggplot(data = BAS, mapping = aes(y = O3..ug.m3., x = Datum.Zeit)) +
   geom_line(color="darkblue")+
@@ -100,3 +121,21 @@ BAS_SO2<-ggplot(data = BAS, mapping = aes(y = SO2..ug.m3., x = Datum.Zeit)) +
   theme_minimal()+
   scale_x_date(limit=c(as.Date("2019-01-01"),as.Date("2020-02-28")))  
 plot(BAS_SO2)
+
+
+BAS_SO2<-ggplot(data = BAS, mapping = aes(y = SO2..ug.m3., x = Datum.Zeit)) +
+  geom_smooth(color="darkblue")+
+  ggtitle("Concentration of SO2 in Basel")+
+  ylab("Concentration")+
+  xlab('')+
+  ylim(0, 10)+
+  theme_minimal()+
+  scale_x_date(limit=c(as.Date("2019-01-01"),as.Date("2020-02-28")))  
+plot(BAS_SO2)
+
+
+#TS of PM10
+bas_ts_pm10 <- ts(data=bas$PM10..ug.m3., frequency = 20)
+bas_ts_pm10
+decomp<-decompose(bas_ts_pm10)
+plot(decomp, xlab="Year")
