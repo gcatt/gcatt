@@ -1,7 +1,7 @@
 library(dplyr)
 library(ggplot2)
 
-zue <- read.csv('NABEL_Crawler/Outputs/ZUE.csv', sep = ";")
+zue <- read.csv('../NABEL_Crawler/Outputs/ZUE.csv', sep = ";")
 
 colnames(zue)
 
