@@ -6,7 +6,7 @@ import time
 from bs4 import BeautifulSoup
 import pandas as pd
 
-import xlrd
+#import xlrd
 
 from selenium.webdriver.chrome.options import Options
 
@@ -14,46 +14,41 @@ chrome_options = Options()
 chrome_options.add_argument("--incognito")
 chrome_options.add_argument("--window-size=1920x1080")
 
-driver = webdriver.Chrome(executable_path= r'/Users/giannipinelli/Downloads/chromedriver')
+driver = webdriver.Chrome(executable_path=r"C:\home\marius\PyCharm_Projects\webdrivers\chromedriver.exe")
 
 driver.get('https://9gag.com/coronavirus/fresh')
 
 time.sleep(2)
-# data_9gag_header = []
-#data_9gag_link = []
+data_9gag_header = []
+data_9gag_link = []
 
-print(len(driver.find_elements_by_tag_name('h1')))
 get_header = driver.find_elements_by_tag_name('h1')
-for header in get_header:
-    print(header.get_attribute('textContent'))
+for header in get_header[:-1]:
+    header = header.get_attribute('textContent')
+    data_9gag_header.append(header)
 
 
 # print(len(driver.find_elements_by_class_name('post-section')))
 # get_link = driver.find_elements_by_class_name('post-section')
 get_link = driver.find_elements_by_css_selector('article > header > a[href]')
+
 for link in get_link:
     link = link.get_attribute('href')
-    print(link)
+    data_9gag_link.append(link)
+
 time.sleep(4)
 driver.close()
 
+print(data_9gag_link)
+print(data_9gag_header)
+
+print(len(data_9gag_link))
+print(len(data_9gag_header))
 
 
-# select_csv = driver.find_element_by_id('csv')
-# select_csv.click()
-# #time.sleep(1)
-#
-# csv_download = driver.find_element_by_xpath('//*[@id="abfrage_form"]/p/button[1]')
-# #time.sleep(1)
-# csv_download.click()
-# time.sleep(10)
-#
-# print('********************************************!!!DOWNLOAD COMPLETED!!!********************************************')
-# driver.quit()
-#
-# #Import Datasets and Save
-# df = pd.read_csv(r"C:\Users\ginoc\Downloads\ZUE.csv", sep='delimiter', header=None)
-# df.drop([0,1,2,3,4], inplace = True)
-# df.to_csv(r"C:\Users\ginoc\Git_Repos\gcatt\NABEL_Crawler\Outputs\ZUE.csv", index = False, header = False, encoding="utf-8")
-# df_new = pd.read_csv(r"C:\Users\ginoc\Git_Repos\gcatt\NABEL_Crawler\Outputs\ZUE.csv", sep=';')
-# df_new.to_csv(r"C:\Users\ginoc\Git_Repos\gcatt\NABEL_Crawler\Outputs\R_Ready\ZUE_clean.csv", index = False, header = True, encoding="utf-8")
+df = pd.DataFrame()
+df["Titel"] = data_9gag_header
+df["Links"] = data_9gag_link
+
+
+df.to_csv("9gag_Output/9gag_Output.csv", index=False, header=True, sep=";")
