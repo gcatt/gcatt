@@ -40,7 +40,11 @@ plot_bejing_all_years <- ggplot(data = Air_Beijing,
   geom_line(color="darkblue")+
   geom_smooth(color="red")+
   ggtitle("Air Quality Index Beijing")+
-  theme_fivethirtyeight()
+  theme(
+    panel.background = element_rect(fill = 'white', colour = 'lightgrey', size = 0.5, linetype = "solid"), 
+    panel.grid.major = element_line(size = 0.5, linetype = 'solid', colour = "lightgrey"),
+    panel.grid.minor = element_line(size = 0.25, linetype = 'solid', colour = "lightgrey"),# Background of the entire plot
+    legend.position="right",)
 
 plot_berlin_all_years <- ggplot(data = Air_Berlin,
        mapping = aes(y = AQI,
@@ -49,7 +53,11 @@ plot_berlin_all_years <- ggplot(data = Air_Berlin,
   geom_line(color="darkblue")+
   geom_smooth(color="red")+
   ggtitle("Air Quality Index Berlin")+
-  theme_fivethirtyeight()
+  theme(
+    panel.background = element_rect(fill = 'white', colour = 'lightgrey', size = 0.5, linetype = "solid"), 
+    panel.grid.major = element_line(size = 0.5, linetype = 'solid', colour = "lightgrey"),
+    panel.grid.minor = element_line(size = 0.25, linetype = 'solid', colour = "lightgrey"),# Background of the entire plot
+    legend.position="right",)
 
 plot_milano_all_years <- ggplot(data = Air_Milano,
        mapping = aes(y = AQI,
@@ -58,7 +66,11 @@ plot_milano_all_years <- ggplot(data = Air_Milano,
   geom_line(color="darkblue")+
   geom_smooth(color="red")+
   ggtitle("Air Quality Index Milano")+
-  theme_fivethirtyeight()
+  theme(
+    panel.background = element_rect(fill = 'white', colour = 'lightgrey', size = 0.5, linetype = "solid"), 
+    panel.grid.major = element_line(size = 0.5, linetype = 'solid', colour = "lightgrey"),
+    panel.grid.minor = element_line(size = 0.25, linetype = 'solid', colour = "lightgrey"),# Background of the entire plot
+    legend.position="right",)
 
 plot_wuhan_all_years <- ggplot(data = Air_Wuhan,
        mapping = aes(y = AQI,
@@ -67,7 +79,11 @@ plot_wuhan_all_years <- ggplot(data = Air_Wuhan,
   geom_line(color="darkblue")+
   geom_smooth(color="red")+
   ggtitle("Air Quality Index Wuhan")+
-  theme_fivethirtyeight()
+  theme(
+    panel.background = element_rect(fill = 'white', colour = 'lightgrey', size = 0.5, linetype = "solid"), 
+    panel.grid.major = element_line(size = 0.5, linetype = 'solid', colour = "lightgrey"),
+    panel.grid.minor = element_line(size = 0.25, linetype = 'solid', colour = "lightgrey"),# Background of the entire plot
+    legend.position="right",)
 
 
 #Plot since 2019
@@ -86,7 +102,11 @@ plot_bejing_2019 <- ggplot(data = AQI20_Beijing,
   geom_line(color="darkblue")+
   geom_smooth(color="red")+
   ggtitle("Air Quality Index Beijing")+
-  theme_fivethirtyeight()
+  theme(
+    panel.background = element_rect(fill = 'white', colour = 'lightgrey', size = 0.5, linetype = "solid"), 
+    panel.grid.major = element_line(size = 0.5, linetype = 'solid', colour = "lightgrey"),
+    panel.grid.minor = element_line(size = 0.25, linetype = 'solid', colour = "lightgrey"),# Background of the entire plot
+    legend.position="right",)
 
 plot_berlin_2019 <- ggplot(data = AQI20_Berlin,
        mapping = aes(y = AQI,
@@ -95,7 +115,11 @@ plot_berlin_2019 <- ggplot(data = AQI20_Berlin,
   geom_line(color="darkblue")+
   geom_smooth(color="red")+
   ggtitle("Air Quality Index Berlin")+
-  theme_fivethirtyeight()
+  theme(
+    panel.background = element_rect(fill = 'white', colour = 'lightgrey', size = 0.5, linetype = "solid"), 
+    panel.grid.major = element_line(size = 0.5, linetype = 'solid', colour = "lightgrey"),
+    panel.grid.minor = element_line(size = 0.25, linetype = 'solid', colour = "lightgrey"),# Background of the entire plot
+    legend.position="right",)
 
 plot_milano_2019<- ggplot(data = AQI20_Milano,
        mapping = aes(y = AQI,
@@ -104,7 +128,11 @@ plot_milano_2019<- ggplot(data = AQI20_Milano,
   geom_line(color="darkblue")+
   geom_smooth(color="red")+
   ggtitle("Air Quality Index Milano")+
-  theme_fivethirtyeight()
+  theme(
+    panel.background = element_rect(fill = 'white', colour = 'lightgrey', size = 0.5, linetype = "solid"), 
+    panel.grid.major = element_line(size = 0.5, linetype = 'solid', colour = "lightgrey"),
+    panel.grid.minor = element_line(size = 0.25, linetype = 'solid', colour = "lightgrey"),# Background of the entire plot
+    legend.position="right",)
 
 plot_wuhan_2019 <- ggplot(data = AQI20_Wuhan,
        mapping = aes(y = AQI,
@@ -113,7 +141,11 @@ plot_wuhan_2019 <- ggplot(data = AQI20_Wuhan,
   geom_line(color="darkblue")+
   geom_smooth(color="red")+
   ggtitle("Air Quality Index Wuhan")+
-  theme_fivethirtyeight()
+  theme(
+    panel.background = element_rect(fill = 'white', colour = 'lightgrey', size = 0.5, linetype = "solid"), 
+    panel.grid.major = element_line(size = 0.5, linetype = 'solid', colour = "lightgrey"),
+    panel.grid.minor = element_line(size = 0.25, linetype = 'solid', colour = "lightgrey"),# Background of the entire plot
+    legend.position="right",)
 
 #Plots Januar-März
 AQI20_Beijing20=subset(Air_Beijing, year(Air_Beijing$date) %in% "2020")
@@ -150,7 +182,11 @@ plot_jan_mar_bejing <- ggplot() +
   ylab('AQI')+
   ggtitle("Air Quality Index Beijing")+
   scale_colour_manual(name="Legend", values=c("orange", "red", "blue"))+
-  theme(legend.position="right")
+  theme(
+    panel.background = element_rect(fill = 'white', colour = 'lightgrey', size = 0.5, linetype = "solid"), 
+    panel.grid.major = element_line(size = 0.5, linetype = 'solid', colour = "lightgrey"),
+    panel.grid.minor = element_line(size = 0.25, linetype = 'solid', colour = "lightgrey"),# Background of the entire plot
+    legend.position="right",)
 
 
 
@@ -162,7 +198,11 @@ plot_jan_mar_wuhan <- ggplot() +
   ylab('AQI')+
   ggtitle("Air Quality Index Wuhan")+
   scale_colour_manual(name="Legend", values=c("orange", "red", "blue"))+
-  theme(legend.position="right")
+  theme(
+    panel.background = element_rect(fill = 'white', colour = 'lightgrey', size = 0.5, linetype = "solid"), 
+    panel.grid.major = element_line(size = 0.5, linetype = 'solid', colour = "lightgrey"),
+    panel.grid.minor = element_line(size = 0.25, linetype = 'solid', colour = "lightgrey"),# Background of the entire plot
+    legend.position="right",)
 
 
 
@@ -175,7 +215,11 @@ plot_jan_mar_berlin <- ggplot() +
   ylab('AQI')+
   ggtitle("Air Quality Index Berlin")+
   scale_colour_manual(name="Legend", values=c("orange", "red", "blue"))+
-  theme(legend.position="right")
+  theme(
+    panel.background = element_rect(fill = 'white', colour = 'lightgrey', size = 0.5, linetype = "solid"), 
+    panel.grid.major = element_line(size = 0.5, linetype = 'solid', colour = "lightgrey"),
+    panel.grid.minor = element_line(size = 0.25, linetype = 'solid', colour = "lightgrey"),# Background of the entire plot
+    legend.position="right",)
 
 
 
@@ -188,7 +232,11 @@ plot_jan_mar_milano <- ggplot() +
   ylab('AQI')+
   ggtitle("Air Quality Index Milano")+
   scale_colour_manual(name="Legend", values=c("orange", "red", "blue"))+
-  theme(legend.position="right")
+  theme(
+    panel.background = element_rect(fill = 'white', colour = 'lightgrey', size = 0.5, linetype = "solid"), 
+    panel.grid.major = element_line(size = 0.5, linetype = 'solid', colour = "lightgrey"),
+    panel.grid.minor = element_line(size = 0.25, linetype = 'solid', colour = "lightgrey"),# Background of the entire plot
+    legend.position="right",)
 
 
 

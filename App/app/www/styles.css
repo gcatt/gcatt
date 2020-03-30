@@ -1,0 +1,76 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: white;    
+  }
+
+h1 {
+font-size: 100px;
+font-family: 'Courier New', Courier, monospace;
+margin: 100px;}
+
+h2 {margin-top: 100px;}
+
+h3 {
+margin-top: 80px;
+
+}
+
+
+
+
+
+div.row {
+    display: flex;
+    flex-direction: column;
+    
+    
+    
+}
+
+div.col-sm-4 {
+    width: 100%;
+    background-color: none;
+
+}
+
+div.col-sm-8 {
+    width: 100%;
+    
+}
+
+
+div.shiny-options-group{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    
+     
+}
+
+div.shiny-plot-output {
+    border-style: hidden!;
+}
+
+
+
+form.well {
+    border-style: none;
+    background-color: white;
+}
+
+ 
+
+img.home_image {
+    margin-left: 42.5%;
+}
+
+div.backgroundimage{
+    position: absolute;
+    top: 0;
+    z-index:-9999;
+    opacity: 0.2;
+    
+
+}
+
